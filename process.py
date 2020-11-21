@@ -15,23 +15,23 @@ import datetime
 from collections import Counter
 
 runtime = time.time()
-DATASET_DIR="E:/CODE/DATASETS"
+DIR="E:/CODE/DATASETS"
 Amanzon="/Amazon_Video"
 Movie="/MovieLens1m"
 Lastfm="/Lastfm"
-Amazon_DATASET_FILE=DATASET_DIR+Amanzon+'/ratings_Video_Games.csv' #ratings_Books ratings_Video_Games
-Movie_FILE=DATASET_DIR+Movie+'/ratings.dat'
-Lastfm_FILE=DATASET_DIR+Lastfm+'/userid-timestamp-artid-artname-traid-traname.tsv'
+Amazon_DATASET_FILE=DIR+Amanzon+'/ratings_Video_Games.csv' #ratings_Books ratings_Video_Games
+Movie_FILE=DIR+Movie+'/ratings.dat'
+Lastfm_FILE=DIR+Lastfm+'/userid-timestamp-artid-artname-traid-traname.tsv'
 DATASET=Lastfm
-cache_dir=DATASET_DIR+DATASET+'/'
+cache_dir=DIR+DATASET+'/HATS/'
 SESSIONS_Timedlt =2
 Max_SESSION_LEN =30
 Min_SESSION_LEN=2
 Min_SESSIONS=3
-WINDOWS_size=12
+WINDOWS_size=5
 PAD_VALUE = 0
-MIN_USER_counts=10#10
-MIN_Item_counts=10#10
+MIN_USER_counts=10
+MIN_Item_counts=10
 global_timedlt={}
 
 def Data_read():
@@ -460,7 +460,7 @@ def map_to_name():
     if "Amazon" in DATASET:
         name_df = pd.read_csv(Amazon_DATASET_FILE, sep=',', names=r_columns, engine='python', iterator=True)
     if "MovieLens" in DATASET:
-        name_df = pd.read_csv(DATASET_DIR+Movie+'/movies.dat', sep='::', names=r_columns, engine='python', iterator=True)
+        name_df = pd.read_csv(DIR+Movie+'/movies.dat', sep='::', names=r_columns, engine='python', iterator=True)
 
     loop = True
     chunkSize = 10000
