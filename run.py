@@ -9,7 +9,7 @@ import logging
 import time
 import torch
 import matplotlib.pyplot as plt
-from LST_model import LST
+from HATS_model import HATS
 import math
 from util import *
 import matplotlib.ticker as ticker
@@ -87,7 +87,7 @@ def main(config,f):
 
     model_save_path=cache_dir + str(SESSION_LEN) + 'i/' + str(WINDOWS_size) + 'w_model_' + str(
                     int(config.d_model)) + 'd' + str(config.blocks) + 'block' + str(config.h) + 'head_parameter.pt'
-    model = LST(config)
+    model = HATS(config)
     testdata=f.testset
     total_test=len(testdata)
     trainset=f.trainset
@@ -171,7 +171,7 @@ Amanzon="/Amazon_Video"
 Movie="/MovieLens1m"
 Lastfm="/Lastfm"
 DATASET=Lastfm
-cache_dir=DIR+DATASET+'/LST/'
+cache_dir=DIR+DATASET+'/HATS/'
 SESSION_LEN,WINDOWS_size=20,6
 
 if __name__ == '__main__':
